@@ -1,0 +1,2054 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EduHub — Choose Your Learning Website</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#070b16;
+    --card:#101625;
+    --card2:#141b2e;
+    --text:#f5f7ff;
+    --muted:#9ca6bc;
+    --primary:#6c63ff;
+    --secondary:#00c9a7;
+    --border:rgba(255,255,255,.09);
+    --shadow:0 18px 55px rgba(0,0,0,.28);
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    color:var(--text);
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 10% 0%,rgba(108,99,255,.18),transparent 30%),
+        radial-gradient(circle at 90% 5%,rgba(0,201,167,.12),transparent 28%),
+        linear-gradient(135deg,#070b16,#0c1222 55%,#080b15);
+}
+
+/* HEADER */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 7%;
+    background:rgba(7,11,22,.84);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:23px;
+    font-weight:800;
+}
+
+.logo-icon{
+    width:45px;
+    height:45px;
+    display:grid;
+    place-items:center;
+    border-radius:14px;
+    font-size:23px;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    box-shadow:0 8px 30px rgba(108,99,255,.3);
+}
+
+.logo span{
+    color:#8e86ff;
+}
+
+.header-badge{
+    padding:9px 16px;
+    border-radius:30px;
+    background:rgba(108,99,255,.12);
+    border:1px solid rgba(108,99,255,.25);
+    color:#bcb7ff;
+    font-size:13px;
+    font-weight:700;
+}
+
+/* HERO */
+
+.hero{
+    max-width:1150px;
+    margin:auto;
+    padding:72px 20px 35px;
+    text-align:center;
+}
+
+.hero-badge{
+    display:inline-flex;
+    padding:9px 17px;
+    border-radius:30px;
+    background:rgba(255,255,255,.05);
+    border:1px solid var(--border);
+    color:#aaa4ff;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:21px;
+}
+
+.hero h1{
+    font-size:clamp(40px,6vw,72px);
+    line-height:1.02;
+    letter-spacing:-2px;
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    background:linear-gradient(90deg,#8b7cff,#00d7b0);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    max-width:750px;
+    margin:auto;
+    color:var(--muted);
+    font-size:17px;
+    line-height:1.7;
+}
+
+/* SEARCH */
+
+.search-area{
+    max-width:780px;
+    margin:32px auto 20px;
+    position:relative;
+}
+
+.search-box{
+    width:100%;
+    height:63px;
+    border-radius:19px;
+    border:1px solid var(--border);
+    outline:none;
+    padding:0 22px 0 58px;
+    background:rgba(255,255,255,.055);
+    color:white;
+    font-size:16px;
+    box-shadow:var(--shadow);
+}
+
+.search-box::placeholder{
+    color:#788197;
+}
+
+.search-box:focus{
+    border-color:#8178ff;
+    box-shadow:0 0 0 4px rgba(108,99,255,.11);
+}
+
+.search-icon{
+    position:absolute;
+    left:21px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:21px;
+}
+
+/* CATEGORIES */
+
+.categories{
+    max-width:1250px;
+    margin:10px auto 38px;
+    padding:0 20px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:9px;
+}
+
+.category-btn{
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.045);
+    color:#aeb6ca;
+    border-radius:25px;
+    padding:10px 16px;
+    cursor:pointer;
+    font-size:13px;
+    font-weight:700;
+    transition:.2s;
+}
+
+.category-btn:hover,
+.category-btn.active{
+    background:linear-gradient(135deg,var(--primary),#5048d8);
+    color:white;
+    border-color:transparent;
+    transform:translateY(-2px);
+}
+
+/* MAIN */
+
+main{
+    max-width:1280px;
+    margin:auto;
+    padding:0 20px 75px;
+}
+
+.section-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.section-top h2{
+    font-size:25px;
+}
+
+.result-count{
+    color:var(--muted);
+    font-size:14px;
+}
+
+/* GRID */
+
+.website-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:17px;
+}
+
+/* CARD */
+
+.website-card{
+    position:relative;
+    overflow:hidden;
+    background:
+        linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.025)),
+        var(--card);
+    border:1px solid var(--border);
+    border-radius:21px;
+    padding:21px;
+    cursor:pointer;
+    transition:.25s;
+    min-height:240px;
+}
+
+.website-card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(108,99,255,.45);
+    box-shadow:0 20px 45px rgba(0,0,0,.35);
+}
+
+.website-card::after{
+    content:"";
+    position:absolute;
+    width:130px;
+    height:130px;
+    right:-65px;
+    bottom:-65px;
+    border-radius:50%;
+    background:rgba(108,99,255,.09);
+}
+
+.website-icon{
+    width:61px;
+    height:61px;
+    display:grid;
+    place-items:center;
+    border-radius:18px;
+    background:linear-gradient(135deg,rgba(108,99,255,.2),rgba(0,201,167,.09));
+    border:1px solid rgba(108,99,255,.22);
+    color:#b8b1ff;
+    font-size:18px;
+    font-weight:900;
+    margin-bottom:17px;
+}
+
+.website-name{
+    font-size:17px;
+    font-weight:800;
+    margin-bottom:7px;
+}
+
+.website-category{
+    color:#858ea7;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:12px;
+}
+
+.recommendation{
+    color:#b8bfd0;
+    font-size:12px;
+    line-height:1.55;
+    min-height:38px;
+}
+
+.visit{
+    margin-top:15px;
+    color:#9e96ff;
+    font-size:12px;
+    font-weight:800;
+}
+
+/* EMPTY */
+
+.empty{
+    display:none;
+    text-align:center;
+    padding:70px 20px;
+    color:var(--muted);
+}
+
+.empty-icon{
+    font-size:45px;
+    margin-bottom:12px;
+}
+
+/* FOOTER */
+
+footer{
+    padding:40px 20px;
+    text-align:center;
+    background:#050810;
+    border-top:1px solid var(--border);
+    color:#8d96aa;
+}
+
+footer strong{
+    color:white;
+}
+
+footer p{
+    margin-top:8px;
+    font-size:13px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1050px){
+    .website-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+@media(max-width:700px){
+    header{
+        padding:17px 5%;
+    }
+
+    .header-badge{
+        display:none;
+    }
+
+    .hero{
+        padding-top:50px;
+    }
+
+    .website-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .website-card{
+        padding:17px;
+    }
+}
+
+@media(max-width:480px){
+    .website-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:43px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .section-top{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+```
+<div class="logo">
+    <div class="logo-icon">🎓</div>
+    Edu<span>Hub</span>
+</div>
+
+<div class="header-badge">
+    100+ Learning Websites
+</div>
+```
+
+</header>
+
+<section class="hero">
+
+```
+<div class="hero-badge">
+    📚 Your Gateway to Online Education
+</div>
+
+<h1>
+    Choose Your <span>Learning</span> Website
+</h1>
+
+<p>
+    Coding se Science tak, English se Urdu tak aur Islamic
+    Studies se exam preparation tak — apni learning website choose karein.
+</p>
+
+<div class="search-area">
+
+    <span class="search-icon">🔎</span>
+
+    <input
+        id="searchInput"
+        class="search-box"
+        type="text"
+        placeholder="Search educational website..."
+        autocomplete="off"
+    >
+
+</div>
+```
+
+</section>
+
+<div class="categories">
+
+```
+<button class="category-btn active" data-category="All">
+    All
+</button>
+
+<button class="category-btn" data-category="Coding">
+    💻 Coding
+</button>
+
+<button class="category-btn" data-category="Islamic">
+    ☪ Islamic
+</button>
+
+<button class="category-btn" data-category="Science">
+    🔬 Science
+</button>
+
+<button class="category-btn" data-category="English">
+    🇬🇧 English
+</button>
+
+<button class="category-btn" data-category="Urdu">
+    اردو Urdu
+</button>
+
+<button class="category-btn" data-category="Mathematics">
+    🔢 Mathematics
+</button>
+
+<button class="category-btn" data-category="Languages">
+    🌎 Languages
+</button>
+
+<button class="category-btn" data-category="Exam Prep">
+    📝 Exam Prep
+</button>
+
+<button class="category-btn" data-category="University">
+    🎓 University
+</button>
+
+<button class="category-btn" data-category="Kids">
+    🧒 Kids
+</button>
+
+<button class="category-btn" data-category="General">
+    📚 General
+</button>
+
+<button class="category-btn" data-category="Skills">
+    🚀 Skills
+</button>
+```
+
+</div>
+
+<main>
+
+```
+<div class="section-top">
+
+    <h2>Popular Educational Platforms</h2>
+
+    <div class="result-count" id="resultCount"></div>
+
+</div>
+
+<div class="website-grid" id="websiteGrid"></div>
+
+<div class="empty" id="emptyState">
+
+    <div class="empty-icon">🔍</div>
+
+    <h3>No educational website found</h3>
+
+    <p>Try searching with another name or category.</p>
+
+</div>
+```
+
+</main>
+
+<footer>
+
+```
+<strong>EduHub</strong>
+
+<p>
+    A simple gateway to useful educational websites around the world.
+</p>
+```
+
+</footer>
+
+<script>
+
+const websites = [
+
+/* ================= CODING ================= */
+
+{
+name:"freeCodeCamp",
+category:"Coding",
+icon:"FC",
+recommendation:"Excellent free platform for learning web development, JavaScript, Python and more.",
+url:"https://www.freecodecamp.org/"
+},
+
+{
+name:"W3Schools",
+category:"Coding",
+icon:"W3",
+recommendation:"Beginner-friendly tutorials and interactive examples for web technologies.",
+url:"https://www.w3schools.com/"
+},
+
+{
+name:"MDN Web Docs",
+category:"Coding",
+icon:"MD",
+recommendation:"One of the best references for HTML, CSS, JavaScript and web APIs.",
+url:"https://developer.mozilla.org/"
+},
+
+{
+name:"Codecademy",
+category:"Coding",
+icon:"CA",
+recommendation:"Interactive coding courses covering programming and web development.",
+url:"https://www.codecademy.com/"
+},
+
+{
+name:"The Odin Project",
+category:"Coding",
+icon:"OP",
+recommendation:"Free project-based curriculum focused on becoming a web developer.",
+url:"https://www.theodinproject.com/"
+},
+
+{
+name:"CS50",
+category:"Coding",
+icon:"CS",
+recommendation:"Harvard's famous introduction to computer science and programming.",
+url:"https://cs50.harvard.edu/"
+},
+
+{
+name:"GeeksforGeeks",
+category:"Coding",
+icon:"GF",
+recommendation:"Large programming resource for algorithms, coding and computer science.",
+url:"https://www.geeksforgeeks.org/"
+},
+
+{
+name:"Programiz",
+category:"Coding",
+icon:"PZ",
+recommendation:"Simple tutorials for Python, C, C++, Java and programming fundamentals.",
+url:"https://www.programiz.com/"
+},
+
+{
+name:"JavaScript.info",
+category:"Coding",
+icon:"JS",
+recommendation:"Detailed modern JavaScript tutorial from fundamentals to advanced concepts.",
+url:"https://javascript.info/"
+},
+
+{
+name:"HackerRank",
+category:"Coding",
+icon:"HR",
+recommendation:"Practice programming challenges and improve problem-solving skills.",
+url:"https://www.hackerrank.com/"
+},
+
+{
+name:"LeetCode",
+category:"Coding",
+icon:"LC",
+recommendation:"Popular platform for algorithms, data structures and coding practice.",
+url:"https://leetcode.com/"
+},
+
+{
+name:"Codewars",
+category:"Coding",
+icon:"CW",
+recommendation:"Practice coding challenges through progressively harder exercises.",
+url:"https://www.codewars.com/"
+},
+
+{
+name:"Exercism",
+category:"Coding",
+icon:"EX",
+recommendation:"Free programming practice with many languages and community feedback.",
+url:"https://exercism.org/"
+},
+
+{
+name:"Sololearn",
+category:"Coding",
+icon:"SL",
+recommendation:"Learn programming through short interactive lessons and exercises.",
+url:"https://www.sololearn.com/"
+},
+
+{
+name:"Khan Academy Computing",
+category:"Coding",
+icon:"KA",
+recommendation:"Free computing, programming and computer science lessons.",
+url:"https://www.khanacademy.org/computing"
+},
+
+{
+name:"Microsoft Learn",
+category:"Coding",
+icon:"MS",
+recommendation:"Official learning resources for Microsoft technologies, coding and cloud.",
+url:"https://learn.microsoft.com/"
+},
+
+{
+name:"Google for Developers",
+category:"Coding",
+icon:"GD",
+recommendation:"Official Google developer learning resources, guides and documentation.",
+url:"https://developers.google.com/"
+},
+
+{
+name:"GitHub Skills",
+category:"Coding",
+icon:"GH",
+recommendation:"Hands-on interactive courses for GitHub, coding and development workflows.",
+url:"https://skills.github.com/"
+},
+
+{
+name:"Oracle University",
+category:"Coding",
+icon:"OU",
+recommendation:"Training resources for Java, databases, cloud and Oracle technologies.",
+url:"https://education.oracle.com/"
+},
+
+{
+name:"IBM SkillsBuild",
+category:"Coding",
+icon:"IBM",
+recommendation:"Free learning resources covering technology, AI, cloud and digital skills.",
+url:"https://skillsbuild.org/"
+},
+
+/* ================= SCIENCE ================= */
+
+{
+name:"Khan Academy",
+category:"Science",
+icon:"KA",
+recommendation:"Excellent free lessons in science, biology, chemistry, physics and mathematics.",
+url:"https://www.khanacademy.org/"
+},
+
+{
+name:"PhET Simulations",
+category:"Science",
+icon:"PH",
+recommendation:"Interactive science and mathematics simulations for learning concepts visually.",
+url:"https://phet.colorado.edu/"
+},
+
+{
+name:"CK-12",
+category:"Science",
+icon:"CK",
+recommendation:"Free digital textbooks and interactive lessons for STEM subjects.",
+url:"https://www.ck12.org/"
+},
+
+{
+name:"NASA",
+category:"Science",
+icon:"NA",
+recommendation:"Explore space, astronomy, Earth science and NASA educational resources.",
+url:"https://www.nasa.gov/learning-resources/"
+},
+
+{
+name:"National Geographic Education",
+category:"Science",
+icon:"NG",
+recommendation:"Explore science, geography, nature and the world through educational content.",
+url:"https://education.nationalgeographic.org/"
+},
+
+{
+name:"Science Buddies",
+category:"Science",
+icon:"SB",
+recommendation:"Science project ideas, experiments and STEM learning resources.",
+url:"https://www.sciencebuddies.org/"
+},
+
+{
+name:"OpenStax",
+category:"Science",
+icon:"OS",
+recommendation:"Free high-quality textbooks covering science, mathematics and college subjects.",
+url:"https://openstax.org/"
+},
+
+{
+name:"MIT OpenCourseWare",
+category:"Science",
+icon:"MIT",
+recommendation:"Free university-level course materials from MIT.",
+url:"https://ocw.mit.edu/"
+},
+
+{
+name:"Science News Explores",
+category:"Science",
+icon:"SN",
+recommendation:"Accessible science news and explanations for students.",
+url:"https://www.snexplores.org/"
+},
+
+{
+name:"HowStuffWorks",
+category:"Science",
+icon:"HS",
+recommendation:"Easy-to-understand explanations about science, technology and everyday systems.",
+url:"https://www.howstuffworks.com/"
+},
+
+/* ================= MATHEMATICS ================= */
+
+{
+name:"Brilliant",
+category:"Mathematics",
+icon:"BR",
+recommendation:"Interactive problem-solving lessons for mathematics, science and logic.",
+url:"https://brilliant.org/"
+},
+
+{
+name:"Mathway",
+category:"Mathematics",
+icon:"MW",
+recommendation:"Useful mathematics problem-solving and step-by-step learning tool.",
+url:"https://www.mathway.com/"
+},
+
+{
+name:"Wolfram Alpha",
+category:"Mathematics",
+icon:"WA",
+recommendation:"Powerful computational knowledge engine for mathematics and science.",
+url:"https://www.wolframalpha.com/"
+},
+
+{
+name:"Desmos",
+category:"Mathematics",
+icon:"DE",
+recommendation:"Interactive graphing calculator and mathematics visualization tools.",
+url:"https://www.desmos.com/"
+},
+
+{
+name:"GeoGebra",
+category:"Mathematics",
+icon:"GG",
+recommendation:"Interactive mathematics tools for geometry, algebra, graphs and calculus.",
+url:"https://www.geogebra.org/"
+},
+
+{
+name:"Math is Fun",
+category:"Mathematics",
+icon:"MF",
+recommendation:"Friendly explanations and activities covering many mathematics topics.",
+url:"https://www.mathsisfun.com/"
+},
+
+{
+name:"Purplemath",
+category:"Mathematics",
+icon:"PM",
+recommendation:"Clear mathematics lessons especially useful for algebra.",
+url:"https://www.purplemath.com/"
+},
+
+{
+name:"Art of Problem Solving",
+category:"Mathematics",
+icon:"AO",
+recommendation:"Challenging mathematics resources for problem-solving and competitions.",
+url:"https://artofproblemsolving.com/"
+},
+
+/* ================= ENGLISH ================= */
+
+{
+name:"BBC Learning English",
+category:"English",
+icon:"BBC",
+recommendation:"Excellent free resource for English vocabulary, grammar, listening and pronunciation.",
+url:"https://www.bbc.co.uk/learningenglish"
+},
+
+{
+name:"British Council LearnEnglish",
+category:"English",
+icon:"BC",
+recommendation:"Structured English learning resources for grammar, vocabulary and skills.",
+url:"https://learnenglish.britishcouncil.org/"
+},
+
+{
+name:"Cambridge English",
+category:"English",
+icon:"CE",
+recommendation:"English learning resources, activities and exam preparation.",
+url:"https://www.cambridgeenglish.org/learning-english/"
+},
+
+{
+name:"Oxford Learner's Dictionaries",
+category:"English",
+icon:"OX",
+recommendation:"Excellent dictionary and vocabulary resource for English learners.",
+url:"https://www.oxfordlearnersdictionaries.com/"
+},
+
+{
+name:"Duolingo English",
+category:"English",
+icon:"DU",
+recommendation:"Gamified language practice that makes daily learning simple.",
+url:"https://www.duolingo.com/"
+},
+
+{
+name:"Grammarly",
+category:"English",
+icon:"GR",
+recommendation:"Writing assistance for grammar, clarity and English communication.",
+url:"https://www.grammarly.com/"
+},
+
+{
+name:"Vocabulary.com",
+category:"English",
+icon:"VC",
+recommendation:"Interactive vocabulary practice with personalized learning.",
+url:"https://www.vocabulary.com/"
+},
+
+{
+name:"Perfect English Grammar",
+category:"English",
+icon:"PE",
+recommendation:"Straightforward English grammar explanations and exercises.",
+url:"https://www.perfect-english-grammar.com/"
+},
+
+/* ================= URDU ================= */
+
+{
+name:"Sabaq Foundation",
+category:"Urdu",
+icon:"SF",
+recommendation:"Free educational videos covering Urdu, science, mathematics, English and computer subjects.",
+url:"https://sabaq.pk/"
+},
+
+{
+name:"Khan Academy Urdu",
+category:"Urdu",
+icon:"KU",
+recommendation:"Khan Academy learning content available in Urdu for selected subjects.",
+url:"https://ur.khanacademy.org/"
+},
+
+{
+name:"Rekhta",
+category:"Urdu",
+icon:"RK",
+recommendation:"Huge digital collection for Urdu literature, poetry, dictionaries and learning.",
+url:"https://www.rekhta.org/"
+},
+
+{
+name:"UrduPoint",
+category:"Urdu",
+icon:"UP",
+recommendation:"Large Urdu-language resource with educational and language material.",
+url:"https://www.urdupoint.com/"
+},
+
+{
+name:"Hamariweb Urdu",
+category:"Urdu",
+icon:"HW",
+recommendation:"Urdu language resources, dictionary and educational information.",
+url:"https://www.hamariweb.com/"
+},
+
+{
+name:"Urdu Lughat",
+category:"Urdu",
+icon:"UL",
+recommendation:"Useful Urdu dictionary and language reference resource.",
+url:"https://udb.gov.pk/"
+},
+
+/* ================= ISLAMIC ================= */
+
+{
+name:"Quran.com",
+category:"Islamic",
+icon:"QC",
+recommendation:"Read and study the Quran with translations, recitations and study tools.",
+url:"https://quran.com/"
+},
+
+{
+name:"Sunnah.com",
+category:"Islamic",
+icon:"SU",
+recommendation:"Searchable collection of major Hadith books and references.",
+url:"https://sunnah.com/"
+},
+
+{
+name:"IslamQA",
+category:"Islamic",
+icon:"IQ",
+recommendation:"Islamic question-and-answer resource with articles on many topics.",
+url:"https://islamqa.info/"
+},
+
+{
+name:"Yaqeen Institute",
+category:"Islamic",
+icon:"YI",
+recommendation:"Research and educational resources on Islam, faith and contemporary questions.",
+url:"https://yaqeeninstitute.org/"
+},
+
+{
+name:"Bayyinah TV",
+category:"Islamic",
+icon:"BT",
+recommendation:"Quran and Islamic studies courses and lectures.",
+url:"https://bayyinahtv.com/"
+},
+
+{
+name:"SeekersGuidance",
+category:"Islamic",
+icon:"SG",
+recommendation:"Online Islamic courses and structured learning resources.",
+url:"https://seekersguidance.org/"
+},
+
+{
+name:"Qalam Institute",
+category:"Islamic",
+icon:"QI",
+recommendation:"Islamic educational courses, lectures and learning programs.",
+url:"https://qalamcenter.com/"
+},
+
+{
+name:"Islam360",
+category:"Islamic",
+icon:"I3",
+recommendation:"Popular Islamic resource with Quran, translations, Hadith and other tools.",
+url:"https://islam360.app/"
+},
+
+{
+name:"Dars e Ashrafi",
+category:"Islamic",
+icon:"DA",
+recommendation:"Structured Quran and Islamic learning across English, Urdu and Arabic.",
+url:"https://www.darseashrafi.org/"
+},
+
+{
+name:"Ilmiyat",
+category:"Islamic",
+icon:"IL",
+recommendation:"Educational platform combining academic learning with Islamic values.",
+url:"https://ilmiyat.com/"
+},
+
+{
+name:"Yaqeen Academy",
+category:"Islamic",
+icon:"YA",
+recommendation:"Educational Islamic content focused on faith and understanding.",
+url:"https://yaqeeninstitute.org/"
+},
+
+/* ================= LANGUAGES ================= */
+
+{
+name:"Duolingo",
+category:"Languages",
+icon:"DL",
+recommendation:"Popular gamified platform for practicing many languages.",
+url:"https://www.duolingo.com/"
+},
+
+{
+name:"Memrise",
+category:"Languages",
+icon:"ME",
+recommendation:"Language learning through vocabulary, listening and interactive practice.",
+url:"https://www.memrise.com/"
+},
+
+{
+name:"Busuu",
+category:"Languages",
+icon:"BU",
+recommendation:"Structured language courses with practice and community features.",
+url:"https://www.busuu.com/"
+},
+
+{
+name:"Babbel",
+category:"Languages",
+icon:"BA",
+recommendation:"Practical language lessons designed around everyday communication.",
+url:"https://www.babbel.com/"
+},
+
+{
+name:"LingQ",
+category:"Languages",
+icon:"LQ",
+recommendation:"Language learning through real-world reading and listening material.",
+url:"https://www.lingq.com/"
+},
+
+{
+name:"Tandem",
+category:"Languages",
+icon:"TD",
+recommendation:"Practice languages through conversations with other learners.",
+url:"https://tandem.net/"
+},
+
+{
+name:"HelloTalk",
+category:"Languages",
+icon:"HT",
+recommendation:"Language exchange and communication practice with learners worldwide.",
+url:"https://www.hellotalk.com/"
+},
+
+{
+name:"WordReference",
+category:"Languages",
+icon:"WR",
+recommendation:"Useful multilingual dictionaries, forums and language references.",
+url:"https://www.wordreference.com/"
+},
+
+/* ================= EXAM PREP ================= */
+
+{
+name:"Khan Academy Test Prep",
+category:"Exam Prep",
+icon:"KT",
+recommendation:"Free practice and preparation resources for academic tests.",
+url:"https://www.khanacademy.org/test-prep"
+},
+
+{
+name:"College Board",
+category:"Exam Prep",
+icon:"CB",
+recommendation:"Official SAT and college readiness resources.",
+url:"https://www.collegeboard.org/"
+},
+
+{
+name:"SAT Suite",
+category:"Exam Prep",
+icon:"SA",
+recommendation:"Official SAT preparation and practice resources.",
+url:"https://satsuite.collegeboard.org/"
+},
+
+{
+name:"ETS",
+category:"Exam Prep",
+icon:"ET",
+recommendation:"Official resources for tests including TOEFL and GRE.",
+url:"https://www.ets.org/"
+},
+
+{
+name:"IELTS",
+category:"Exam Prep",
+icon:"IE",
+recommendation:"Official IELTS test preparation and English assessment resources.",
+url:"https://ielts.org/"
+},
+
+{
+name:"British Council Exams",
+category:"Exam Prep",
+icon:"BE",
+recommendation:"Exam preparation resources and English assessment information.",
+url:"https://www.britishcouncil.org/exam"
+},
+
+{
+name:"Nearpeer",
+category:"Exam Prep",
+icon:"NP",
+recommendation:"Pakistan-focused online learning and exam preparation platform.",
+url:"https://nearpeer.org/"
+},
+
+{
+name:"IlmKiDunya",
+category:"Exam Prep",
+icon:"IK",
+recommendation:"Pakistan-focused educational resources, notes and exam material.",
+url:"https://www.ilmkidunya.com/"
+},
+
+{
+name:"Taleem City",
+category:"Exam Prep",
+icon:"TC",
+recommendation:"Study resources and educational material for Pakistani students.",
+url:"https://taleemcity.com/"
+},
+
+{
+name:"Study Notes",
+category:"Exam Prep",
+icon:"SN",
+recommendation:"Online study notes and academic resources.",
+url:"https://studynotes.pk/"
+},
+
+/* ================= UNIVERSITY ================= */
+
+{
+name:"Coursera",
+category:"University",
+icon:"CO",
+recommendation:"University courses, professional certificates and degree-related learning.",
+url:"https://www.coursera.org/"
+},
+
+{
+name:"edX",
+category:"University",
+icon:"ED",
+recommendation:"University-level courses from institutions around the world.",
+url:"https://www.edx.org/"
+},
+
+{
+name:"MIT OpenCourseWare",
+category:"University",
+icon:"MI",
+recommendation:"Free MIT course materials across science, technology and many other subjects.",
+url:"https://ocw.mit.edu/"
+},
+
+{
+name:"Harvard Online",
+category:"University",
+icon:"HA",
+recommendation:"Online courses and learning resources from Harvard.",
+url:"https://pll.harvard.edu/"
+},
+
+{
+name:"Stanford Online",
+category:"University",
+icon:"ST",
+recommendation:"Online learning resources and courses from Stanford.",
+url:"https://online.stanford.edu/"
+},
+
+{
+name:"OpenLearn",
+category:"University",
+icon:"OL",
+recommendation:"Free learning resources from The Open University.",
+url:"https://www.open.edu/openlearn/"
+},
+
+{
+name:"FutureLearn",
+category:"University",
+icon:"FL",
+recommendation:"Online courses from universities and educational institutions.",
+url:"https://www.futurelearn.com/"
+},
+
+{
+name:"Alison",
+category:"University",
+icon:"AL",
+recommendation:"Large collection of online courses across many professional subjects.",
+url:"https://alison.com/"
+},
+
+{
+name:"Udemy",
+category:"University",
+icon:"UD",
+recommendation:"Large course marketplace covering programming, business, design and more.",
+url:"https://www.udemy.com/"
+},
+
+{
+name:"Academic Earth",
+category:"University",
+icon:"AE",
+recommendation:"Collection of university-level educational videos and courses.",
+url:"https://academicearth.org/"
+},
+
+/* ================= KIDS ================= */
+
+{
+name:"ABCya",
+category:"Kids",
+icon:"AB",
+recommendation:"Educational games and activities designed for children.",
+url:"https://www.abcya.com/"
+},
+
+{
+name:"PBS Kids",
+category:"Kids",
+icon:"PB",
+recommendation:"Educational games and activities for younger learners.",
+url:"https://pbskids.org/"
+},
+
+{
+name:"Funbrain",
+category:"Kids",
+icon:"FB",
+recommendation:"Games, books and educational activities for children.",
+url:"https://www.funbrain.com/"
+},
+
+{
+name:"National Geographic Kids",
+category:"Kids",
+icon:"NG",
+recommendation:"Science, animals, geography and educational activities for kids.",
+url:"https://kids.nationalgeographic.com/"
+},
+
+{
+name:"NASA Kids",
+category:"Kids",
+icon:"NK",
+recommendation:"Space and science learning resources for young learners.",
+url:"https://www.nasa.gov/learning-resources/"
+},
+
+{
+name:"Scratch",
+category:"Kids",
+icon:"SC",
+recommendation:"Creative coding platform where young learners can build interactive projects.",
+url:"https://scratch.mit.edu/"
+},
+
+{
+name:"Code.org",
+category:"Kids",
+icon:"CO",
+recommendation:"Excellent beginner-friendly coding education platform.",
+url:"https://code.org/"
+},
+
+{
+name:"Tynker",
+category:"Kids",
+icon:"TY",
+recommendation:"Interactive coding and computer science learning for children.",
+url:"https://www.tynker.com/"
+},
+
+{
+name:"Kodable",
+category:"Kids",
+icon:"KO",
+recommendation:"Coding fundamentals designed for young learners.",
+url:"https://www.kodable.com/"
+},
+
+{
+name:"Duolingo ABC",
+category:"Kids",
+icon:"DA",
+recommendation:"Early literacy and reading practice for young learners.",
+url:"https://www.duolingo.com/"
+},
+
+/* ================= SKILLS ================= */
+
+{
+name:"DigiSkills.pk",
+category:"Skills",
+icon:"DS",
+recommendation:"Free Pakistan-focused online courses for digital skills and freelancing.",
+url:"https://digiskills.pk/"
+},
+
+{
+name:"Google Skillshop",
+category:"Skills",
+icon:"GS",
+recommendation:"Learn Google's professional tools and digital products.",
+url:"https://skillshop.withgoogle.com/"
+},
+
+{
+name:"HubSpot Academy",
+category:"Skills",
+icon:"HA",
+recommendation:"Free courses in marketing, sales, business and digital skills.",
+url:"https://academy.hubspot.com/"
+},
+
+{
+name:"LinkedIn Learning",
+category:"Skills",
+icon:"LI",
+recommendation:"Professional courses covering technology, business and creative skills.",
+url:"https://www.linkedin.com/learning/"
+},
+
+{
+name:"AWS Skill Builder",
+category:"Skills",
+icon:"AW",
+recommendation:"Cloud computing and AWS learning resources.",
+url:"https://skillbuilder.aws/"
+},
+
+{
+name:"Cisco Networking Academy",
+category:"Skills",
+icon:"CN",
+recommendation:"Training in networking, cybersecurity, programming and technology.",
+url:"https://www.netacad.com/"
+},
+
+{
+name:"Meta Blueprint",
+category:"Skills",
+icon:"MB",
+recommendation:"Learn digital marketing and Meta advertising tools.",
+url:"https://www.facebook.com/business/learn"
+},
+
+{
+name:"Canva Design School",
+category:"Skills",
+icon:"CD",
+recommendation:"Design tutorials and resources for learning visual communication.",
+url:"https://www.canva.com/designschool/"
+},
+
+{
+name:"Figma Learn",
+category:"Skills",
+icon:"FG",
+recommendation:"Learn interface design and Figma through official tutorials.",
+url:"https://help.figma.com/"
+},
+
+{
+name:"Adobe Learn",
+category:"Skills",
+icon:"AD",
+recommendation:"Official tutorials for Photoshop, Illustrator, Premiere and Adobe tools.",
+url:"https://helpx.adobe.com/learning.html"
+},
+
+/* ================= GENERAL ================= */
+
+{
+name:"Wikipedia",
+category:"General",
+icon:"WK",
+recommendation:"Huge free encyclopedia useful for exploring almost any academic topic.",
+url:"https://www.wikipedia.org/"
+},
+
+{
+name:"Britannica",
+category:"General",
+icon:"EB",
+recommendation:"Trusted encyclopedia with educational articles across many subjects.",
+url:"https://www.britannica.com/"
+},
+
+{
+name:"TED-Ed",
+category:"General",
+icon:"TE",
+recommendation:"Short educational lessons explaining interesting ideas and concepts.",
+url:"https://ed.ted.com/"
+},
+
+{
+name:"TED Talks",
+category:"General",
+icon:"TD",
+recommendation:"Talks and presentations covering science, education, technology and society.",
+url:"https://www.ted.com/"
+},
+
+{
+name:"YouTube Learning",
+category:"General",
+icon:"YT",
+recommendation:"Massive collection of educational videos and tutorials.",
+url:"https://www.youtube.com/"
+},
+
+{
+name:"Internet Archive",
+category:"General",
+icon:"IA",
+recommendation:"Digital library containing books, media and historical resources.",
+url:"https://archive.org/"
+},
+
+{
+name:"Project Gutenberg",
+category:"General",
+icon:"PG",
+recommendation:"Free digital library with thousands of public-domain books.",
+url:"https://www.gutenberg.org/"
+},
+
+{
+name:"Google Arts & Culture",
+category:"General",
+icon:"GA",
+recommendation:"Explore art, history, culture and museums through interactive experiences.",
+url:"https://artsandculture.google.com/"
+},
+
+{
+name:"Smithsonian Learning Lab",
+category:"General",
+icon:"SM",
+recommendation:"Educational resources and collections from the Smithsonian.",
+url:"https://learninglab.si.edu/"
+},
+
+{
+name:"OER Commons",
+category:"General",
+icon:"OE",
+recommendation:"Open educational resources for students and educators.",
+url:"https://oercommons.org/"
+},
+
+{
+name:"MERLOT",
+category:"General",
+icon:"ME",
+recommendation:"Collection of curated online learning materials.",
+url:"https://www.merlot.org/"
+},
+
+{
+name:"Open Culture",
+category:"General",
+icon:"OC",
+recommendation:"Collection of free courses, books, movies and educational resources.",
+url:"https://www.openculture.com/"
+},
+
+{
+name:"Academic Earth",
+category:"General",
+icon:"AC",
+recommendation:"Free academic lectures and university-level learning resources.",
+url:"https://academicearth.org/"
+},
+
+{
+name:"Study.com",
+category:"General",
+icon:"ST",
+recommendation:"Online lessons, study resources and academic practice.",
+url:"https://study.com/"
+},
+
+{
+name:"Quizlet",
+category:"General",
+icon:"QZ",
+recommendation:"Flashcards, quizzes and study tools for many subjects.",
+url:"https://quizlet.com/"
+},
+
+{
+name:"Quizizz",
+category:"General",
+icon:"QI",
+recommendation:"Interactive quizzes and learning activities.",
+url:"https://quizizz.com/"
+},
+
+{
+name:"Kahoot!",
+category:"General",
+icon:"KH",
+recommendation:"Game-based quizzes useful for classroom and self-learning.",
+url:"https://kahoot.com/"
+},
+
+{
+name:"Photomath",
+category:"Mathematics",
+icon:"PM",
+recommendation:"Interactive mathematics learning and problem-solving support.",
+url:"https://photomath.com/"
+},
+
+{
+name:"Symbolab",
+category:"Mathematics",
+icon:"SY",
+recommendation:"Mathematics solver and learning resource for many problem types.",
+url:"https://www.symbolab.com/"
+},
+
+{
+name:"IXL",
+category:"General",
+icon:"IX",
+recommendation:"Practice-based learning across mathematics, language and school subjects.",
+url:"https://www.ixl.com/"
+},
+
+{
+name:"Quizlet Learn",
+category:"General",
+icon:"QL",
+recommendation:"Digital flashcards and study practice for many subjects.",
+url:"https://quizlet.com/"
+},
+
+{
+name:"Saylor Academy",
+category:"University",
+icon:"SA",
+recommendation:"Free and low-cost online courses across academic and professional topics.",
+url:"https://learn.saylor.org/"
+},
+
+{
+name:"OpenLearn",
+category:"General",
+icon:"OL",
+recommendation:"Free learning materials from The Open University.",
+url:"https://www.open.edu/openlearn/"
+},
+
+{
+name:"NPTEL",
+category:"University",
+icon:"NP",
+recommendation:"Large collection of university-level engineering and science courses.",
+url:"https://nptel.ac.in/"
+},
+
+{
+name:"SWAYAM",
+category:"University",
+icon:"SW",
+recommendation:"Indian government-backed online courses from universities and institutions.",
+url:"https://swayam.gov.in/"
+},
+
+{
+name:"Virtual University Pakistan",
+category:"University",
+icon:"VU",
+recommendation:"Pakistan-based online university offering degree programs and learning resources.",
+url:"https://www.vu.edu.pk/"
+},
+
+{
+name:"Allama Iqbal Open University",
+category:"University",
+icon:"AI",
+recommendation:"Pakistan's distance-learning university with programs across many fields.",
+url:"https://www.aiou.edu.pk/"
+},
+
+{
+name:"NAVTTC",
+category:"Skills",
+icon:"NV",
+recommendation:"Pakistan's national vocational and technical training resources.",
+url:"https://navttc.gov.pk/"
+},
+
+{
+name:"Taleemabad",
+category:"Kids",
+icon:"TA",
+recommendation:"Digital learning content designed for younger school students.",
+url:"https://taleemabad.com/"
+},
+
+{
+name:"Noon Academy",
+category:"Exam Prep",
+icon:"NO",
+recommendation:"Online learning and exam preparation platform with interactive learning.",
+url:"https://www.noon.com/"
+},
+
+{
+name:"Maqsad",
+category:"Exam Prep",
+icon:"MQ",
+recommendation:"Pakistan-focused digital learning and academic support platform.",
+url:"https://maqsad.io/"
+},
+
+{
+name:"AIOU eLearning",
+category:"University",
+icon:"EL",
+recommendation:"Online learning resources connected with Allama Iqbal Open University.",
+url:"https://www.aiou.edu.pk/"
+},
+
+{
+name:"Coursera for Students",
+category:"University",
+icon:"CS",
+recommendation:"Online university and professional courses from global institutions.",
+url:"https://www.coursera.org/"
+},
+
+{
+name:"Google Classroom",
+category:"General",
+icon:"GC",
+recommendation:"Online classroom platform for organizing lessons, assignments and learning.",
+url:"https://classroom.google.com/"
+},
+
+{
+name:"Microsoft Teams Education",
+category:"General",
+icon:"MT",
+recommendation:"Digital classroom and collaboration tools for education.",
+url:"https://www.microsoft.com/education/products/teams"
+},
+
+{
+name:"Notion for Education",
+category:"Skills",
+icon:"NT",
+recommendation:"Useful workspace for notes, planning, projects and study organization.",
+url:"https://www.notion.com/product/notion-for-education"
+},
+
+{
+name:"Wikiversity",
+category:"General",
+icon:"WV",
+recommendation:"Collaborative learning resources and courses from the Wikimedia community.",
+url:"https://www.wikiversity.org/"
+},
+
+{
+name:"Wikibooks",
+category:"General",
+icon:"WB",
+recommendation:"Free collaborative textbooks and educational books.",
+url:"https://www.wikibooks.org/"
+},
+
+{
+name:"Wiktionary",
+category:"Languages",
+icon:"WT",
+recommendation:"Free multilingual dictionary and language reference.",
+url:"https://www.wiktionary.org/"
+},
+
+{
+name:"Google Scholar",
+category:"University",
+icon:"GS",
+recommendation:"Search engine for academic papers, research and scholarly literature.",
+url:"https://scholar.google.com/"
+},
+
+{
+name:"JSTOR",
+category:"University",
+icon:"JS",
+recommendation:"Academic research platform with scholarly articles and resources.",
+url:"https://www.jstor.org/"
+},
+
+{
+name:"ResearchGate",
+category:"University",
+icon:"RG",
+recommendation:"Academic network for discovering and discussing research.",
+url:"https://www.researchgate.net/"
+},
+
+{
+name:"Semantic Scholar",
+category:"University",
+icon:"SS",
+recommendation:"AI-powered academic search and research discovery platform.",
+url:"https://www.semanticscholar.org/"
+},
+
+{
+name:"arXiv",
+category:"Science",
+icon:"AX",
+recommendation:"Open research repository for physics, mathematics, computer science and more.",
+url:"https://arxiv.org/"
+},
+
+{
+name:"PubMed",
+category:"Science",
+icon:"PM",
+recommendation:"Major database for biomedical and life-science research.",
+url:"https://pubmed.ncbi.nlm.nih.gov/"
+},
+
+{
+name:"Google Arts & Culture",
+category:"General",
+icon:"AC",
+recommendation:"Interactive educational exploration of art, history and culture.",
+url:"https://artsandculture.google.com/"
+},
+
+{
+name:"Britannica School",
+category:"General",
+icon:"BS",
+recommendation:"Educational encyclopedia resources for students and learners.",
+url:"https://school.eb.com/"
+},
+
+{
+name:"CommonLit",
+category:"English",
+icon:"CL",
+recommendation:"Reading and literacy resources with texts and comprehension activities.",
+url:"https://www.commonlit.org/"
+},
+
+{
+name:"ReadTheory",
+category:"English",
+icon:"RT",
+recommendation:"Free reading comprehension practice with adaptive exercises.",
+url:"https://readtheory.org/"
+},
+
+{
+name:"Newsela",
+category:"English",
+icon:"NE",
+recommendation:"Learning through news and informational texts at different reading levels.",
+url:"https://newsela.com/"
+},
+
+{
+name:"Lingoda",
+category:"Languages",
+icon:"LI",
+recommendation:"Online language classes and structured language learning.",
+url:"https://www.lingoda.com/"
+},
+
+{
+name:"Preply",
+category:"Languages",
+icon:"PR",
+recommendation:"Online language learning with tutors and conversation practice.",
+url:"https://preply.com/"
+},
+
+{
+name:"Purdue OWL",
+category:"English",
+icon:"PO",
+recommendation:"Excellent writing, grammar, citation and academic writing resource.",
+url:"https://owl.purdue.edu/"
+},
+
+{
+name:"Merriam-Webster",
+category:"English",
+icon:"MW",
+recommendation:"Dictionary, vocabulary and English language reference.",
+url:"https://www.merriam-webster.com/"
+},
+
+{
+name:"Dictionary.com",
+category:"English",
+icon:"DC",
+recommendation:"Online English dictionary, definitions and vocabulary resources.",
+url:"https://www.dictionary.com/"
+},
+
+{
+name:"Collins Dictionary",
+category:"English",
+icon:"CD",
+recommendation:"Dictionary and language learning resources for English learners.",
+url:"https://www.collinsdictionary.com/"
+},
+
+{
+name:"Vocabulary.com",
+category:"English",
+icon:"VC",
+recommendation:"Interactive vocabulary practice and word-learning activities.",
+url:"https://www.vocabulary.com/"
+}
+
+];
+
+
+const grid = document.getElementById("websiteGrid");
+const searchInput = document.getElementById("searchInput");
+const resultCount = document.getElementById("resultCount");
+const emptyState = document.getElementById("emptyState");
+
+let selectedCategory = "All";
+
+
+function renderWebsites(){
+
+    const searchTerm =
+        searchInput.value.toLowerCase().trim();
+
+
+    const filtered =
+        websites.filter(site => {
+
+            const matchesSearch =
+                site.name.toLowerCase().includes(searchTerm) ||
+                site.category.toLowerCase().includes(searchTerm) ||
+                site.recommendation.toLowerCase().includes(searchTerm);
+
+            const matchesCategory =
+                selectedCategory === "All" ||
+                site.category === selectedCategory;
+
+            return matchesSearch && matchesCategory;
+
+        });
+
+
+    grid.innerHTML = "";
+
+
+    resultCount.textContent =
+        `${filtered.length} website${filtered.length !== 1 ? "s" : ""}`;
+
+
+    if(filtered.length === 0){
+
+        emptyState.style.display = "block";
+
+        return;
+
+    }
+
+
+    emptyState.style.display = "none";
+
+
+    filtered.forEach(site => {
+
+        const card =
+            document.createElement("div");
+
+
+        card.className =
+            "website-card";
+
+
+        card.innerHTML = `
+
+            <div class="website-icon">
+                ${site.icon}
+            </div>
+
+            <div class="website-name">
+                ${site.name}
+            </div>
+
+            <div class="website-category">
+                ${site.category}
+            </div>
+
+            <div class="recommendation">
+                ${site.recommendation}
+            </div>
+
+            <div class="visit">
+                Visit Learning Website →
+            </div>
+
+        `;
+
+
+        card.addEventListener("click",() => {
+
+            window.open(
+                site.url,
+                "_blank",
+                "noopener,noreferrer"
+            );
+
+        });
+
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+searchInput.addEventListener(
+    "input",
+    renderWebsites
+);
+
+
+document
+.querySelectorAll(".category-btn")
+.forEach(button => {
+
+    button.addEventListener("click",() => {
+
+        document
+        .querySelectorAll(".category-btn")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+
+        button.classList.add("active");
+
+
+        selectedCategory =
+            button.dataset.category;
+
+
+        renderWebsites();
+
+    });
+
+});
+
+
+renderWebsites();
+
+</script>
+
+</body>
+</html>
